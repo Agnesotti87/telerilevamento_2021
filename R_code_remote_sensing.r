@@ -63,3 +63,30 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 #stretch lin
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 #TIPS: colorist package permette di giocare con i colori 
+#DAY4
+# import di immagini del 1988 e del 2011
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+#plot in RGB
+plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
+#insieriamo nel plotRGB l  banda IR
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+#plottiamo 1988 e 2011 a confronto
+par(mfrow=c(2,1))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+#mettiamo a confronto i due diversi stretch nei due diversi anni
+dev.off()
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Hist")
+#salvare in pdf
+pdf("multitemp.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Hist")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Hist")
+dev.off()
