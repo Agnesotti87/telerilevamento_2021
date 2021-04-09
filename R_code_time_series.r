@@ -38,3 +38,44 @@ plot(TGr)
 plotRGB(TGr, 1, 2, 3, stretch="Lin")
 
 # call to action: try playing with color.hist function
+
+# DAY 2
+#RICHIAMARE SEMPRE TUTTE LE LIBRERIE ALL'INIZIO DEL CODICE R
+#install and recall rasterVis package
+# we will explore levelplot function (more info )on: https://www.rdocumentation.org/packages/lattice/versions/0.15-3/topics/levelplot)
+#set wd
+setwd("C:/lab/greenland")
+#import greenland files with lapply
+rlist <- list.files(pattern="lst")
+rlist
+import <- lapply(rlist,raster)
+import
+TGr <- stack(import)
+#now let's explore levelplot function
+levelplot(TGr)
+#levelplot restituisce la mappa dei valori con relativo grafico
+#rispetto a un semplice plot function, l'output visivo è migliore, più definito
+# let's play with colors
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
+levelplot(TGr, col.regions=cl)
+#con levelplot è anche possibile rinominare le mappe di output, usando l'argomento names
+levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+# è possibile aggiungere anche un titolo principale
+levelplot(TGr,col.regions=cl, , main="LST variation in time", names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
+#let's explore greenland melting data
+# new import list
+melt_list <- list.files(pattern="melt")
+melt_import <- lapply(melt_list, raster)
+#stack melt file
+melt <- stack(melt_import)
+melt
+# and plot it
+levelplot(melt)
+# plot difference between 2007 vs 1979
+# prima produrre lo strato di dati da plottare (check nella tabella)
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
+clb <- colorRampPalette(c("blue","white","red"))(100)
+#and plot
+plot(melt_amount, col=clb)
+#better resolution with levelplot
+levelplot(melt_amount, color.regions=clb)
