@@ -28,4 +28,12 @@ plot(sot$map)
 #2 - si inserisce nella classificazione la classe di nuvole
 #3 - uso di sensori non passivi (usano fonti di luce "Propria" come i sensori laser o radar)
 
+#Grand Canyon (more info on: )
+#upload images
+GC <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+#let's have an eye on the uploaded image
+plotRGB(GC, r=1,g=2,b=3, stretch="lin")
+plotRGB(GC, r=1,g=2,b=3, stretch="hist")
+#let's try with a different stretch
+
 
